@@ -6,7 +6,7 @@ volumes:
 
 services:
   adguard:
-    image: adguard/adguardhome
+    image: adguard/adguardhome:arm64-latest
     network_mode: host
     privileged: true
     volumes:
