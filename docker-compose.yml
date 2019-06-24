@@ -1,0 +1,14 @@
+version: '2.1'
+
+volumes:
+  work:
+  conf:
+
+services:
+  adguard:
+    image: adguard/adguardhome
+    network_mode: host
+    privileged: true
+    volumes:
+      - 'work:/opt/adguardhome/work'
+      - 'conf:/opt/adguardhome/conf'
