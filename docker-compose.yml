@@ -3,6 +3,7 @@ version: '2.1'
 volumes:
   work:
   conf:
+  letsencrypt:
 
 services:
   adguard:
@@ -12,3 +13,8 @@ services:
     volumes:
       - 'work:/opt/adguardhome/work'
       - 'conf:/opt/adguardhome/conf'
+  
+  dns-cloudflare:
+    build: ./dns-cloudflare
+    volumes:
+      - 'letsencrypt:/etc/letsencrypt'
