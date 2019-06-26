@@ -1,9 +1,12 @@
 #!/bin/sh -ex
 
 # only continue if the required vars are set
-[ -n "${CLOUDFLARE_EMAIL}" ] || exit 1
-[ -n "${CLOUDFLARE_API_KEY}" ] || exit 1
-[ -n "${CLOUDFLARE_DOMAINS}" ] || exit 1
+[ -n "${CLOUDFLARE_EMAIL}" ] || ( echo "CLOUDFLARE_EMAIL is not defined" ; exit 1 ; )
+[ -n "${CLOUDFLARE_API_KEY}" ] || ( echo "CLOUDFLARE_API_KEY is not defined" ; exit 1 ; )
+[ -n "${CLOUDFLARE_DOMAINS}" ] || ( echo "CLOUDFLARE_DOMAINS is not defined" ; exit 1 ; )
+
+# create dir for secrets
+mkdir /root/.secrets
 
 # write a secure cloudflare credentials file
 # https://certbot-dns-cloudflare.readthedocs.io/en/stable/#
@@ -12,7 +15,7 @@ dns_cloudflare_email = ${CLOUDFLARE_EMAIL}
 dns_cloudflare_api_key = ${CLOUDFLARE_API_KEY}
 EOF
 
-# set permissions secrets
+# set permissions
 chmod 0700 /root/.secrets
 chmod 0400 /root/.secrets/cloudflare.ini
 
@@ -24,7 +27,6 @@ do
         --dns-cloudflare-credentials /root/.secrets/cloudflare.ini \
         -m "${CLOUDFLARE_EMAIL}" --agree-tos \
         -d "${CLOUDFLARE_DOMAINS}"
-
 
     # wait 24-hours before renewing
     sleep 86400
