@@ -5,9 +5,6 @@
 [ -n "${CLOUDFLARE_API_KEY}" ] || ( echo "CLOUDFLARE_API_KEY is not defined" ; exit 1 ; )
 [ -n "${CLOUDFLARE_DOMAINS}" ] || ( echo "CLOUDFLARE_DOMAINS is not defined" ; exit 1 ; )
 
-# create dir for secrets
-mkdir /root/.secrets
-
 # write a secure cloudflare credentials file
 # https://certbot-dns-cloudflare.readthedocs.io/en/stable/#
 cat > /root/.secrets/cloudflare.ini << EOF
