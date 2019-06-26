@@ -1,4 +1,4 @@
-#!/bin/sh -ex
+#!/bin/sh -e
 
 # only continue if the required vars are set
 [ -n "${CLOUDFLARE_EMAIL}" ] || ( echo "CLOUDFLARE_EMAIL is not defined" ; exit 1 ; )
