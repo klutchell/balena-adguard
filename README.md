@@ -8,16 +8,16 @@ This project is a [balenaCloud](https://www.balena.io/cloud) stack with the foll
 
 balenaCloud is a free service to remotely manage and update your IoT devices through an online dashboard interface, as well as providing remote access to the AdGuard Home web interface without any additional configuation.
 
+## Requirements
+
+* RaspberryPi3 or a similar aarch64 device supported by BalenaCloud
+* Custom domain name with Cloudflare DNS (eg. adguard.example.com)
+
 ## Getting Started
 
 To get started you'll first need to sign up for a free balenaCloud account and flash your device.
 
 <https://www.balena.io/docs/learn/getting-started>
-
-## Requirements
-
-* RaspberryPi3 or a similar aarch64 device supported by BalenaCloud
-* Custom domain name with Cloudflare DNS (eg. adguard.example.com)
 
 ## Deployment
 
