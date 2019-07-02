@@ -14,6 +14,11 @@ To get started you'll first need to sign up for a free balenaCloud account and f
 
 <https://www.balena.io/docs/learn/getting-started>
 
+## Requirements
+
+* RaspberryPi3 or a similar aarch64 device supported by BalenaCloud
+* Custom domain name with Cloudflare DNS (eg. adguard.example.com)
+
 ## Deployment
 
 Once your account is set up, deployment is carried out by downloading the project and pushing it to your device either via Git or the balena CLI.
@@ -31,9 +36,20 @@ Application envionment variables apply to all services within the application, a
 
 ## Usage
 
-* <https://github.com/AdguardTeam/AdGuardHome/wiki/Getting-Started>
-* copy `/etc/letsencrypt/{adguard.example.com}/fullchain.pem` contents to the Certificates portion of the [Encryption Settings](https://github.com/AdguardTeam/AdGuardHome/wiki/Encryption)
-* copy `/etc/letsencrypt/{adguard.example.com}/privkey.pem` contents to the Private Key portion of the [Encryption Settings](https://github.com/AdguardTeam/AdGuardHome/wiki/Encryption)
+<https://github.com/AdguardTeam/AdGuardHome/wiki/Getting-Started>
+
+To enable [encryption](https://github.com/AdguardTeam/AdGuardHome/wiki/Encryption) with your custom domain:
+
+1. in the BalenaCloud Web Dashboard - provide the 3 required CLOUDFLARE application environment variables as defined above
+2. in the BalenaCloud Web Dashboard - observe the dns-cloudflare container logs to see if certs were successfully generated
+3. Open AdGuard Home web interface and go to settings
+4. Scroll down to the "Encryption" settings
+5. in the BalenaCloud Web Dashboard - SSH into the dns-cloudflare container
+6. copy/paste the contents of `/etc/letsencrypt/{adguard.example.com}/fullchain.pem` in the Certificates field
+7. copy/paste the contents of `/etc/letsencrypt/{adguard.example.com}/privkey.pem` in the Private Key field
+8. write your domain name in the Server name field
+
+The certificate script will run once every 24 hours to check if renewal is required.
 
 ## Author
 
