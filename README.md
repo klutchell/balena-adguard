@@ -38,6 +38,8 @@ Application envionment variables apply to all services within the application, a
 
 <https://github.com/AdguardTeam/AdGuardHome/wiki/Getting-Started>
 
+**During AdGuard setup, make sure to select your wireless or wired interface for DNS binding, NOT the balena or docker interfaces.**
+
 To enable [encryption](https://github.com/AdguardTeam/AdGuardHome/wiki/Encryption) with your custom domain:
 
 1. in the BalenaCloud Web Dashboard - provide the 3 required CLOUDFLARE application environment variables as defined above
