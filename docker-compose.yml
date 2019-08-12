@@ -7,6 +7,8 @@ volumes:
 
 services:
   adguard:
+    # https://github.com/AdguardTeam/AdGuardHome/wiki/Docker
+    # https://hub.docker.com/r/adguard/adguardhome
     image: adguard/adguardhome:arm64-v0.97.1
     network_mode: host
     privileged: true
@@ -15,6 +17,7 @@ services:
       - 'conf:/opt/adguardhome/conf'
   
   dns-cloudflare:
+    # https://github.com/AdguardTeam/AdGuardHome/wiki/Encryption
     build: ./dns-cloudflare
     volumes:
       - 'letsencrypt:/etc/letsencrypt'
