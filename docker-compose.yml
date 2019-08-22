@@ -9,7 +9,7 @@ services:
   adguard:
     # https://github.com/AdguardTeam/AdGuardHome/wiki/Docker
     # https://hub.docker.com/r/adguard/adguardhome
-    image: adguard/adguardhome:arm64-v0.97.1
+    image: adguard/adguardhome:arm64-v0.98.0
     network_mode: host
     privileged: true
     volumes:
