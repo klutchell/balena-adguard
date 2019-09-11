@@ -36,26 +36,36 @@ Application envionment variables apply to all services within the application, a
 
 ## Usage
 
+### Initial setup
+
 <https://github.com/AdguardTeam/AdGuardHome/wiki/Getting-Started>
 
-**During AdGuard setup, make sure to select your wireless or wired interface for DNS binding, NOT the balena or docker interfaces.**
+1. connect to `http:<device-ip>:3000/install.html` in your browser
+2. Step 1/5: select Get Started
+3. Step 2/5a: select `All interfaces` and `80` for Admin Web Interface listen interface
+4. Step 2/5b: select `eth0` or `wlan0` and `53` for DNS server listen interface
+5. Step 3/5: provide an admin username and password
+6. Step 4/5: optionally use the guide to configure your devices
+7. Step 5/5: select Open Dashboard and if the page fails to redirect you can manually browse to `http:<device-ip>:80`
 
-To enable [encryption](https://github.com/AdguardTeam/AdGuardHome/wiki/Encryption) with your custom domain:
+### Encryption setup
+
+<https://github.com/AdguardTeam/AdGuardHome/wiki/Encryption>
 
 1. in the BalenaCloud Web Dashboard - provide the 3 required CLOUDFLARE application environment variables as defined above
 2. in the BalenaCloud Web Dashboard - observe the dns-cloudflare container logs to see if certs were successfully generated
 3. Open AdGuard Home web interface and go to settings
 4. Scroll down to the "Encryption" settings
 5. in the BalenaCloud Web Dashboard - SSH into the dns-cloudflare container
-6. copy/paste the contents of `/etc/letsencrypt/{adguard.example.com}/fullchain.pem` in the Certificates field
-7. copy/paste the contents of `/etc/letsencrypt/{adguard.example.com}/privkey.pem` in the Private Key field
+6. copy/paste the contents of `/etc/letsencrypt/live/{adguard.example.com}/fullchain.pem` in the Certificates field
+7. copy/paste the contents of `/etc/letsencrypt/live/{adguard.example.com}/privkey.pem` in the Private Key field
 8. write your domain name in the Server name field
 
 The certificate script will run once every 24 hours to check if renewal is required.
 
 ## Author
 
-Kyle Harding <kylemharding@gmail.com>
+Kyle Harding <https://klutchell.dev>
 
 ## Acknowledgments
 
