@@ -50,9 +50,9 @@ Application envionment variables apply to all services within the application, a
 1. in the BalenaCloud Web Dashboard - provide the 3 required CLOUDFLARE application environment variables as defined above
 2. in the BalenaCloud Web Dashboard - observe the certbot container logs to see if certs were successfully generated
 3. open AdGuard Home web interface and go to Settings -> Encryption
-4. write your domain name in the Server name field
-5. Set the certificates file path to `/etc/letsencrypt/live/{adguard.mydomain.com}/fullchain.pem`
-6. Set the private key file path to `/etc/letsencrypt/live/{adguard.mydomain.com}/privkey.pem`
+4. write your domain name in the Server name field (eg. `adguard.mydomain.com`)
+5. set the certificates file path to `/etc/letsencrypt/live/adguard.mydomain.com/fullchain.pem`
+6. set the private key file path to `/etc/letsencrypt/live/adguard.mydomain.com/privkey.pem`
 
 The certificate script will run once every 24 hours to check if renewal is required.
 
