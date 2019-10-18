@@ -1,23 +1,22 @@
 version: '2.1'
 
 volumes:
-  work:
-  conf:
-  letsencrypt:
+    adguardhome:
+    letsencrypt:
 
 services:
-  adguard:
-    # https://github.com/AdguardTeam/AdGuardHome/wiki/Docker
+
     # https://hub.docker.com/r/adguard/adguardhome
-    image: adguard/adguardhome:arm64-v0.98.1
-    network_mode: host
-    privileged: true
-    volumes:
-      - 'work:/opt/adguardhome/work'
-      - 'conf:/opt/adguardhome/conf'
-  
-  dns-cloudflare:
-    # https://github.com/AdguardTeam/AdGuardHome/wiki/Encryption
-    build: ./dns-cloudflare
-    volumes:
-      - 'letsencrypt:/etc/letsencrypt'
+    adguard:
+        image: adguard/adguardhome:arm64-v0.99.0
+        network_mode: host
+        privileged: true
+        volumes:
+            - 'adguardhome:/opt/adguardhome:rw'
+            - 'letsencrypt:/etc/letsencrypt:ro'
+        command: --port 80
+
+    certbot:
+        build: ./certbot
+        volumes:
+            - 'letsencrypt:/etc/letsencrypt:rw'

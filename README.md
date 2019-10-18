@@ -4,14 +4,14 @@ If you're looking for a way to quickly and easily get up and running with an AdG
 
 This project is a [balenaCloud](https://www.balena.io/cloud) stack with the following services:
 
-* [AdGuard Home](https://adguard.com/en/adguard-home/overview.html)
+- [AdGuard Home](https://adguard.com/en/adguard-home/overview.html)
 
 balenaCloud is a free service to remotely manage and update your IoT devices through an online dashboard interface, as well as providing remote access to the AdGuard Home web interface without any additional configuation.
 
 ## Requirements
 
-* RaspberryPi3 or a similar aarch64 device supported by BalenaCloud
-* Custom domain name with Cloudflare DNS (eg. adguard.example.com)
+- RaspberryPi3 or a similar aarch64 device supported by BalenaCloud
+- Custom domain name with Cloudflare DNS (eg. adguard.example.com)
 
 ## Getting Started
 
@@ -27,12 +27,10 @@ Once your account is set up, deployment is carried out by downloading the projec
 
 Application envionment variables apply to all services within the application, and can be applied fleet-wide to apply to multiple devices.
 
-|Name|Example|Purpose|
-|---|---|---|
-|`TZ`|`America/Toronto`|To inform services of the [timezone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) in your location, in order to set times and dates within the applications correctly|
-|`CLOUDFLARE_EMAIL`|`cloudflare@example.com`|(optional) Cloudflare email address for Letsencrypt SSL certificate generation via [certbot](https://certbot-dns-cloudflare.readthedocs.io/en/stable/)|
-|`CLOUDFLARE_API_KEY`|`0123456789abcdef0123456789abcdef01234567`|(optional) Cloudflare API key for Letsencrypt SSL certificate generation via [certbot](https://certbot-dns-cloudflare.readthedocs.io/en/stable/)|
-|`CLOUDFLARE_DOMAINS`|`adguard.example.com`|(optional) Cloudflare domains to obtain SSL certificates|
+- `TZ` - (optional) inform services of the [timezone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) in your location (eg. `America/Toronto`)
+- `CF_API_EMAIL` - (optional) cloudflare account email (eg. `foo@bar.com`)
+- `CF_API_KEY` - (optional) cloudflare global API key (eg. `0123456789abcdef0123456789abcdef01234567`)
+- `CF_DOMAINS` - (optional) cloudflare domain or subdomain (eg. `adguard.mydomain.com`)
 
 ## Usage
 
@@ -40,26 +38,21 @@ Application envionment variables apply to all services within the application, a
 
 <https://github.com/AdguardTeam/AdGuardHome/wiki/Getting-Started>
 
-1. connect to `http:<device-ip>:3000/install.html` in your browser
-2. Step 1/5: select Get Started
-3. Step 2/5a: select `All interfaces` and `80` for Admin Web Interface listen interface
-4. Step 2/5b: select `eth0` or `wlan0` and `53` for DNS server listen interface
-5. Step 3/5: provide an admin username and password
-6. Step 4/5: optionally use the guide to configure your devices
-7. Step 5/5: select Open Dashboard and if the page fails to redirect you can manually browse to `http:<device-ip>:80`
+1. connect to `http:<device-ip>:80/install.html` in your browser
+2. select `All interfaces` and `80` for Admin Web Interface listen interface
+3. select `eth0` or `wlan0` and `53` for DNS server listen interface
+4. provide an admin username and password
 
 ### Encryption setup
 
 <https://github.com/AdguardTeam/AdGuardHome/wiki/Encryption>
 
 1. in the BalenaCloud Web Dashboard - provide the 3 required CLOUDFLARE application environment variables as defined above
-2. in the BalenaCloud Web Dashboard - observe the dns-cloudflare container logs to see if certs were successfully generated
-3. Open AdGuard Home web interface and go to settings
-4. Scroll down to the "Encryption" settings
-5. in the BalenaCloud Web Dashboard - SSH into the dns-cloudflare container
-6. copy/paste the contents of `/etc/letsencrypt/live/{adguard.example.com}/fullchain.pem` in the Certificates field
-7. copy/paste the contents of `/etc/letsencrypt/live/{adguard.example.com}/privkey.pem` in the Private Key field
-8. write your domain name in the Server name field
+2. in the BalenaCloud Web Dashboard - observe the certbot container logs to see if certs were successfully generated
+3. open AdGuard Home web interface and go to Settings -> Encryption
+4. write your domain name in the Server name field
+5. Set the certificates file path to `/etc/letsencrypt/live/{adguard.mydomain.com}/fullchain.pem`
+6. Set the private key file path to `/etc/letsencrypt/live/{adguard.mydomain.com}/privkey.pem`
 
 The certificate script will run once every 24 hours to check if renewal is required.
 
@@ -69,7 +62,7 @@ Kyle Harding <https://klutchell.dev>
 
 ## Acknowledgments
 
-* <https://github.com/AdguardTeam/AdGuardHome>
+Original software is by AdGuard: <https://adguard.com/en/adguard-home/overview.html>
 
 ## License
 
