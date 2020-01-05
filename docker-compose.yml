@@ -14,9 +14,10 @@ services:
         volumes:
             - 'adguardhome:/opt/adguardhome:rw'
             - 'letsencrypt:/etc/letsencrypt:ro'
-        command: --port 80
 
     certbot:
         build: ./certbot
         volumes:
             - 'letsencrypt:/etc/letsencrypt:rw'
+        ports:
+            - '80:80/tcp'
