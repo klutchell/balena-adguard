@@ -27,8 +27,11 @@ Once your account is set up, deployment is carried out by downloading the projec
 
 Application envionment variables apply to all services within the application, and can be applied fleet-wide to apply to multiple devices.
 
-- `TZ` - (optional) inform services of the [timezone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) in your location (eg. `America/Toronto`)
-- `CERTBOT_DOMAIN` - (optional) custom domain that points to the public IP address of your router or firewall (eg. `adguard.mydomain.com`)
+|Name|Example|Purpose|
+|---|---|---|
+|`TZ`|`America/Toronto`|(optional) inform services of the [timezone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) in your location|
+|`CERTBOT_DOMAIN`|`adguard.mydomain.com`|(optional) custom domain that points to the public IP address of your router or firewall|
+|`ACME_EMAIL`|`email@address.com`|(optional) provide an email address to agree to ACME ToS|
 
 ## Usage
 
