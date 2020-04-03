@@ -1,22 +1,16 @@
 version: '2.1'
 
 volumes:
-    adguardhome:
-    letsencrypt:
+    adguardhome_work:
+    adguardhome_conf:
 
 services:
 
     # https://hub.docker.com/r/adguard/adguardhome
     adguard:
-        image: adguard/adguardhome:arm64-latest
+        image: adguard/adguardhome:arm64-v0.101.0
         network_mode: host
         privileged: true
         volumes:
-            - 'adguardhome:/opt/adguardhome:rw'
-            - 'letsencrypt:/etc/letsencrypt:ro'
-        command: --port 80
-
-    certbot:
-        build: ./certbot
-        volumes:
-            - 'letsencrypt:/etc/letsencrypt:rw'
+            - 'adguardhome_work:/opt/adguardhome/work:rw'
+            - 'adguardhome_conf:/opt/adguardhome/conf:rw'
