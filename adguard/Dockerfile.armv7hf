@@ -1,0 +1,1 @@
+FROM adguard/adguardhome:armhf-latest

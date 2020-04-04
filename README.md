@@ -10,7 +10,7 @@ balenaCloud is a free service to remotely manage and update your IoT devices thr
 
 ## Requirements
 
-- RaspberryPi3 or a similar aarch64 device supported by BalenaCloud
+- RaspberryPi3 or a similar armhf/arm64 device supported by BalenaCloud
 - Custom domain name with Cloudflare DNS (eg. adguard.example.com)
 
 ## Getting Started
