@@ -10,18 +10,18 @@ balenaCloud is a free service to remotely manage and update your IoT devices thr
 
 ## Requirements
 
-- RaspberryPi3 or a similar aarch64 device supported by BalenaCloud
-- Custom domain name with Cloudflare DNS (eg. adguard.example.com)
+- RaspberryPi3 or a similar aarch64 (arm64) device supported by BalenaCloud
+- Custom domain for DNS-over-HTTPS and/or DNS-over-TLS (eg. adguard.example.com)
 
 ## Getting Started
 
-To get started you'll first need to sign up for a free balenaCloud account and flash your device.
+You can one-click-deploy this project to balena using the button below:
 
-<https://www.balena.io/docs/learn/getting-started>
+[![deploy button](https://balena.io/deploy.png)](https://dashboard.balena-cloud.com/deploy?repoUrl=https://github.com/klutchell/balena-adguard&defaultDeviceType=raspberrypi3-64)
 
-## Deployment
+## Manual Deployment
 
-Once your account is set up, deployment is carried out by downloading the project and pushing it to your device either via Git or the balena CLI.
+Alternatively, deployment can be carried out by manually creating a [balenaCloud account](https://dashboard.balena-cloud.com) and application, flashing a device, downloading the project and pushing it via either Git or the [balena CLI](https://github.com/balena-io/balena-cli).
 
 ### Application Environment Variables
 
