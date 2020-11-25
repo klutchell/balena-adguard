@@ -58,14 +58,6 @@ Application envionment variables apply to all services within the application, a
 
 The certificate script will run once every 24 hours to check if renewal is required.
 
-## Author
-
-Kyle Harding <https://klutchell.dev>
-
 ## Acknowledgments
 
 Original software is by AdGuard: <https://adguard.com/en/adguard-home/overview.html>
-
-## License
-
-[MIT License](./LICENSE)
