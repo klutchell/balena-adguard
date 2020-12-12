@@ -1,2 +1,20 @@
-applicationEnvironmentVariables:
-    - TZ: 'America/Toronto'
+version: "2"
+slug: "adguard"
+name: "AdGuard Home"
+type: "sw.application"
+assets:
+  - url: "https://github.com/klutchell/balena-adguard"
+    name: "repository"
+  - url: "https://github.com/klutchell/balena-adguard/main/logo.png"
+    name: "logo"
+data:
+  description: "AdGuard Home is a network-wide software for blocking ads & tracking."
+  defaultDeviceType: "raspberrypi3"
+  supportedDeviceTypes:
+    - "raspberry-pi"
+    - "raspberry-pi2"
+    - "raspberrypi3"
+    - "raspberrypi3-64"
+    - "raspberrypi4-64"
+    - "fincm3"
+    - "intel-nuc"

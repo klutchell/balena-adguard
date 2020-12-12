@@ -4,7 +4,7 @@ If you're looking for a way to quickly and easily get up and running with an AdG
 
 This project is a [balenaCloud](https://www.balena.io/cloud) stack with the following services:
 
-- [AdGuard Home](https://adguard.com/en/adguard-home/overview.html)
+- [AdGuard Home](https://adguard.com/en/adguard-home/overview.html) is a network-wide software for blocking ads & tracking.
 
 balenaCloud is a free service to remotely manage and update your IoT devices through an online dashboard interface, as well as providing remote access to the AdGuard Home web interface without any additional configuation.
 
