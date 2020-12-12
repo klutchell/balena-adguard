@@ -3,7 +3,6 @@ version: '2.1'
 volumes:
     adguardhome_work:
     adguardhome_conf:
-    letsencrypt:
 
 services:
 
@@ -15,11 +14,4 @@ services:
         volumes:
             - 'adguardhome_work:/opt/adguardhome/work:rw'
             - 'adguardhome_conf:/opt/adguardhome/conf:rw'
-            - 'letsencrypt:/etc/letsencrypt:ro'
-
-    certbot:
-        build: ./certbot
-        volumes:
-            - 'letsencrypt:/etc/letsencrypt:rw'
-        ports:
-            - '80:80/tcp'
+        command: --host 0.0.0.0 --port 80 --no-check-update --config /opt/adguardhome/conf/AdGuardHome.yaml
