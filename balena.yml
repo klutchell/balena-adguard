@@ -5,7 +5,7 @@ type: "sw.application"
 assets:
   - url: "https://github.com/klutchell/balena-adguard"
     name: "repository"
-  - url: "https://github.com/klutchell/balena-adguard/main/logo.png"
+  - url: "https://raw.githubusercontent.com/klutchell/balena-adguard/main/logo.png"
     name: "logo"
 data:
   description: "AdGuard Home is a network-wide software for blocking ads & tracking."
