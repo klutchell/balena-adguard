@@ -1,14 +1,16 @@
-version: "2"
-slug: "adguard"
 name: "AdGuard Home"
 type: "sw.application"
+description: "AdGuard Home is a network-wide software for blocking ads & tracking."
 assets:
-  - url: "https://github.com/klutchell/balena-adguard"
-    name: "repository"
-  - url: "https://raw.githubusercontent.com/klutchell/balena-adguard/main/logo.png"
-    name: "logo"
+  repository:
+    type: "blob.asset"
+    data:
+      url: "https://github.com/klutchell/balena-adguard"
+  logo:
+    type: "blob.asset"
+    data:
+      url: "https://raw.githubusercontent.com/klutchell/balena-adguard/main/logo.png"
 data:
-  description: "AdGuard Home is a network-wide software for blocking ads & tracking."
   defaultDeviceType: "raspberrypi3"
   supportedDeviceTypes:
     - "raspberry-pi"
