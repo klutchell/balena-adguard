@@ -1,0 +1,24 @@
+name: balena
+
+on:
+  pull_request:
+    types: [opened, synchronize, closed]
+    branches:
+      - main
+
+jobs:
+  build:
+    if: github.actor == github.repository_owner
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: balena-io/balena-ci@v0.5.0
+        with:
+          balena_token: ${{ secrets.BALENA_API_KEY }}
+          fleet: ${{ secrets.BALENA_FLEET_SLUG }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          versionbot: false
+          environment: balena-cloud.com
+          create_tag: true
