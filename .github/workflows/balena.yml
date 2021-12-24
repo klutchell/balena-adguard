@@ -14,11 +14,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: balena-io/balena-ci@v0.5.0
+      - uses: balena-io/balena-ci@klutchell/fix-create-ref
         with:
           balena_token: ${{ secrets.BALENA_API_KEY }}
           fleet: ${{ secrets.BALENA_FLEET_SLUG }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           versionbot: false
           environment: balena-cloud.com
-          create_tag: true
