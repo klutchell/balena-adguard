@@ -1,7 +1,7 @@
 name: "AdGuard Home"
 type: "sw.application"
 description: "AdGuard Home is a network-wide software for blocking ads & tracking."
-fleetcta: Block dem apps
+version: 0.107.1
 post-provisioning: >-
   ## Usage instructions
 
