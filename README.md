@@ -12,19 +12,21 @@ balenaCloud is a free service to remotely manage and update your IoT devices thr
 
 You can one-click-deploy this project to balena using the button below:
 
-[![deploy button](https://balena.io/deploy.svg)](https://dashboard.balena-cloud.com/deploy?repoUrl=https://github.com/klutchell/balena-adguard)
+[![deploy with balena](https://balena.io/deploy.svg)](https://dashboard.balena-cloud.com/deploy?repoUrl=https://github.com/klutchell/balena-adguard)
 
 ## Manual Deployment
 
-Alternatively, deployment can be carried out by manually creating a [balenaCloud account](https://dashboard.balena-cloud.com) and application, flashing a device, downloading the project and pushing it via either Git or the [balena CLI](https://github.com/balena-io/balena-cli).
+Alternatively, deployment can be carried out by manually creating a [balenaCloud account](https://dashboard.balena-cloud.com) and application,
+flashing a device, downloading the project and pushing it via the [balena CLI](https://github.com/balena-io/balena-cli).
 
 ### Application Environment Variables
 
-Application envionment variables apply to all services within the application, and can be applied fleet-wide to apply to multiple devices.
+Application environment variables apply to all services within the application, and can be applied fleet-wide to apply to multiple devices.
 
-|Name|Example|Purpose|
-|---|---|---|
-|`TZ`|`America/Toronto`|(optional) inform services of the [timezone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) in your location|
+| Name           | Description                                                                                                      |
+| -------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `TZ`           | Inform services of the [timezone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) in your location |
+| `SET_HOSTNAME` | Set a custom hostname on application start. Default is `adguard`.                                                |
 
 ## Usage
 
