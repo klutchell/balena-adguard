@@ -24,4 +24,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           versionbot: false
           environment: balena-cloud.com
-          create_tag: true
+          create_tag: false
