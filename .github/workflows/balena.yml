@@ -1,18 +1,21 @@
 name: balena
 
 on:
-  pull_request:
-    types: [opened, synchronize, closed]
+  pull_request_target:
+    types: [opened, synchronize, closed, labeled]
     branches:
       - main
 
 jobs:
   build:
-    if: github.actor == github.repository_owner
+    if: github.actor == github.repository_owner || contains(github.event.pull_request.labels.*.name, 'ok-to-test')
     runs-on: ubuntu-20.04
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha }}
 
       - uses: balena-io/balena-ci@v0.5.0
         with:
