@@ -1,7 +1,7 @@
 name: "AdGuard Home"
 type: "sw.application"
 description: "AdGuard Home is a network-wide software for blocking ads & tracking."
-version: 0.107.3
+version: 0.107.4
 post-provisioning: >-
   ## Usage instructions
 
