@@ -1,0 +1,16 @@
+{
+  "extends": ["config:base"],
+  "packageRules": [
+    {
+      "matchPackageNames": ["adguard/adguardhome"],
+      "matchBaseBranches": ["main"],
+      "postUpgradeTasks": {
+        "commands": [
+          "sed \"s|^version: .*$|version: $(echo {{{newVersion}}} | sed -rn 's/^v?0*([1-9][0-9]*|0)\\.0*([1-9][0-9]*|0)\\.0*([1-9][0-9]*|0)/\\1.\\2.\\3/p')|\" -i balena.yml"
+        ],
+        "fileFilters": ["balena.yml"],
+        "executionMode": "update"
+      }
+    }
+  ]
+}
