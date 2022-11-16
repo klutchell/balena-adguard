@@ -36,7 +36,8 @@ Once your device joins the fleet you'll need to allow some time for it to downlo
 
 On your router or DHCP server assign a static IP to your AdGuard Home device.
 
-1. Connect to `http://YOUR-DEVICE-IP:80/install.html` in your browser
+1. Connect to `http://adguard.local` or if that doesn't work `http://YOUR-DEVICE-IP:80/install.html` in your browser
+    - `YOUR-DEVICE-IP` should be the IP assigned via DHCP from your home router, you can find this IP in your router interface.  
 2. Select `All interfaces` and port `80` for the Admin Web Interface listen interface
 3. Select either `eth0` or `wlan0` and port `53` for the DNS server listen interface
 4. Provide an admin username and password
