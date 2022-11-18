@@ -34,15 +34,17 @@ Application environment variables apply to all services within the application, 
 
 Once your device joins the fleet you'll need to allow some time for it to download the application.
 
-On your router or DHCP server assign a static IP to your AdGuard Home device.
+Note that [joining an Open Fleet](https://www.balena.io/blog/introducing-open-fleets-and-self-submitted-apps-and-blocks-on-balenahub/#join-fleet) does not require a balena account nor does it add the device to your personal balena dashboard. If you would rather manage your device and fleet directly you can [fork this fleet](https://dashboard.balena-cloud.com/deploy?repoUrl=https://github.com/klutchell/balena-adguard).
 
 1. Connect to `http://adguard.local` or if that doesn't work `http://YOUR-DEVICE-IP:80/install.html` in your browser
-    - `YOUR-DEVICE-IP` should be the IP assigned via DHCP from your home router, you can find this IP in your router interface.  
+   - `YOUR-DEVICE-IP` should be the IP assigned via DHCP from your home router, you can find this IP in your router interface.
 2. Select `All interfaces` and port `80` for the Admin Web Interface listen interface
 3. Select either `eth0` or `wlan0` and port `53` for the DNS server listen interface
 4. Provide an admin username and password
 
-Documentation for Adguard Home can be found at https://github.com/AdguardTeam/AdGuardHome/wiki/Getting-Started
+Documentation for Adguard Home can be found at <https://github.com/AdguardTeam/AdGuardHome/wiki/Getting-Started>
+
+It is recommended that you assign a static IP to your AdGuard Home device via you router or DHCP server if possible!
 
 ### Encryption setup
 
