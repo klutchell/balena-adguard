@@ -8,7 +8,7 @@ services:
 
     # https://hub.docker.com/r/adguard/adguardhome
     adguard:
-        image: adguard/adguardhome:v0.107.26
+        image: adguard/adguardhome:v0.107.27
         network_mode: host
         privileged: true
         volumes:
