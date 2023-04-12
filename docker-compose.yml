@@ -14,7 +14,15 @@ services:
         volumes:
             - 'adguardhome_work:/opt/adguardhome/work:rw'
             - 'adguardhome_conf:/opt/adguardhome/conf:rw'
-        command: --host 0.0.0.0 --port 80 --no-check-update --config /opt/adguardhome/conf/AdGuardHome.yaml
+        command:
+            - "/opt/adguardhome/AdGuardHome"
+            - "--no-check-update"
+            - "--host"
+            - "0.0.0.0"
+            - "--port"
+            - "80"
+            - "--config"
+            - "/opt/adguardhome/conf/AdGuardHome.yaml"
 
     # https://github.com/balenablocks/hostname
     hostname:
