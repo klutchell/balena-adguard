@@ -1,14 +1,22 @@
 {
-  "extends": ["config:base"],
+  "extends": [
+    "config:recommended"
+  ],
   "packageRules": [
     {
-      "matchPackageNames": ["adguard/adguardhome"],
-      "matchBaseBranches": ["main"],
+      "matchPackageNames": [
+        "adguard/adguardhome"
+      ],
+      "matchBaseBranches": [
+        "main"
+      ],
       "postUpgradeTasks": {
         "commands": [
           "sed \"s|^version: .*$|version: $(npx -q -y -- semver -c -l {{{newVersion}}})|\" -i balena.yml"
         ],
-        "fileFilters": ["balena.yml"],
+        "fileFilters": [
+          "balena.yml"
+        ],
         "executionMode": "update"
       }
     }
