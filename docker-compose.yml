@@ -23,7 +23,7 @@ services:
 
     # https://github.com/balenablocks/hostname
     hostname:
-        image: balenablocks/hostname:latest
+        image: balenablocks/hostname:latest@sha256:b923d6ea886ec48125d2c49e431638d2ef6f4adac574b729b4135cfade3ffdce
         restart: no
         labels:
             io.balena.features.supervisor-api: 1
