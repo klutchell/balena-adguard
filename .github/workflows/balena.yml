@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
-      - uses: balena-io/deploy-to-balena-action@c2b38b8a084ca27e00128752ba5916a5e2b0b792 # v1.1.2
+      - uses: balena-io/deploy-to-balena-action@2b90a451c8f95ff0aeb4931c8054c913dacf73f9 # v1.1.3
         with:
           balena_token: ${{ secrets.BALENA_API_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
