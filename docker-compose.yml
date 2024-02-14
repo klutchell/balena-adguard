@@ -1,31 +1,66 @@
-version: '2.1'
+version: "2.1"
 
 volumes:
-    adguardhome_work:
-    adguardhome_conf:
+  adguardhome_work: {}
+  adguardhome_conf: {}
+  tailscale: {}
 
 services:
+  # https://hub.docker.com/r/adguard/adguardhome
+  adguard:
+    build: adguard
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - "adguardhome_work:/opt/adguardhome/work:rw"
+      - "adguardhome_conf:/opt/adguardhome/conf:rw"
 
-    # https://hub.docker.com/r/adguard/adguardhome
-    adguard:
-        image: adguard/adguardhome:v0.107.44@sha256:049ef6c019a629b33db2ef957665b257fbd5761970a1517a309807fb128befb1
-        network_mode: host
-        privileged: true
-        volumes:
-            - 'adguardhome_work:/opt/adguardhome/work:rw'
-            - 'adguardhome_conf:/opt/adguardhome/conf:rw'
-        command:
-            - "--no-check-update"
-            - "--web-addr"
-            - "0.0.0.0:80"
-            - "--config"
-            - "/opt/adguardhome/conf/AdGuardHome.yaml"
+  # https://github.com/balenablocks/hostname
+  hostname:
+    image: balenablocks/hostname:latest@sha256:b923d6ea886ec48125d2c49e431638d2ef6f4adac574b729b4135cfade3ffdce
+    restart: no
+    labels:
+      io.balena.features.supervisor-api: 1
+    environment:
+      SET_HOSTNAME: adguard
 
-    # https://github.com/balenablocks/hostname
-    hostname:
-        image: balenablocks/hostname:latest@sha256:b923d6ea886ec48125d2c49e431638d2ef6f4adac574b729b4135cfade3ffdce
-        restart: no
-        labels:
-            io.balena.features.supervisor-api: 1
-        environment:
-            SET_HOSTNAME: adguard
+  # https://hub.docker.com/r/tailscale/tailscale
+  # https://github.com/tailscale/tailscale/blob/main/cmd/containerboot/main.go
+  # https://tailscale.com/kb/1282/docker
+  # https://tailscale.com/kb/1278/tailscaled
+  # https://tailscale.com/kb/1241/tailscale-up
+  # https://tailscale.com/kb/1242/tailscale-serve
+  # https://tailscale.com/kb/1311/tailscale-funnel
+  tailscale:
+    image: tailscale/tailscale:v1.58.2@sha256:6dc3334d142df48cdf9876152762aff4f17df46c62507f2b4fb07179882a1962
+    restart: unless-stopped
+    environment:
+      TS_STATE_DIR: /var/lib/tailscale
+      TS_SOCKET: /var/run/tailscale/tailscaled.sock
+      TS_USERSPACE: false
+      TS_AUTH_ONCE: false
+      TS_HOSTNAME: adguard
+      TS_EXTRA_ARGS: --accept-dns=false --reset
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+      - SYS_MODULE
+    labels:
+      io.balena.features.kernel-modules: 1
+    tmpfs:
+      - /tmp
+      - /run
+    volumes:
+      - tailscale:/var/lib/tailscale
+    entrypoint:
+      - /bin/sh
+      - -c
+    command:
+      - |
+        modprobe tun || true
+        modprobe wireguard || true
+        mkdir -p /dev/net
+        [ ! -c /dev/net/tun ] && mknod /dev/net/tun c 10 200
+        /usr/local/bin/containerboot
