@@ -1,5 +1,5 @@
 # https://hub.docker.com/r/adguard/adguardhome
-FROM adguard/adguardhome:v0.107.44@sha256:049ef6c019a629b33db2ef957665b257fbd5761970a1517a309807fb128befb1
+FROM adguard/adguardhome:v0.107.45@sha256:52a9c2e7b4c56e5f08e1b2f3196d500c931adadc8917712ff9ef9ea922c030fe
 
 # hadolint ignore=DL3018
 RUN apk add --no-cache yq
