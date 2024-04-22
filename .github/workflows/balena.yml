@@ -15,7 +15,7 @@ jobs:
         fleet: [gh_klutchell/adguard-home]
 
     steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+      - uses: actions/checkout@1d96c772d19495a3b5c517cd2bc0cb401ea0529f # v4
       - uses: balena-io/deploy-to-balena-action@b74377e96eb7337180f5598a73d791c8e4539719 # v2.0.61
         with:
           balena_token: ${{ secrets.BALENA_API_KEY }}
