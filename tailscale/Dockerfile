@@ -5,7 +5,7 @@
 # https://tailscale.com/kb/1241/tailscale-up
 # https://tailscale.com/kb/1242/tailscale-serve
 # https://tailscale.com/kb/1311/tailscale-funnel
-FROM tailscale/tailscale:v1.72.1@sha256:83a6faec34866f70914a7d241d6ca749e6914f08f4f9059d942e1c3088dc001b
+FROM tailscale/tailscale:v1.74.1@sha256:a013ce5266e5c796efe31c7cf9562deb21423f8586361d7faadaf675fa4296ac
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
