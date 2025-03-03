@@ -2,7 +2,7 @@ name: "AdGuard Home"
 type: "sw.application"
 description: "AdGuard Home is a network-wide software for blocking ads & tracking."
 # renovate: datasource=docker depName=adguard/adguardhome
-version: 0.107.52
+version: 0.107.57
 post-provisioning: >-
   ## Usage instructions
 
