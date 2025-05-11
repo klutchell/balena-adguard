@@ -25,31 +25,18 @@ services:
     environment:
       SET_HOSTNAME: adguard
 
-  # https://hub.docker.com/r/tailscale/tailscale
-  # https://github.com/tailscale/tailscale/blob/main/cmd/containerboot/main.go
-  # https://tailscale.com/kb/1282/docker
-  # https://tailscale.com/kb/1278/tailscaled
-  # https://tailscale.com/kb/1241/tailscale-up
-  # https://tailscale.com/kb/1242/tailscale-serve
-  # https://tailscale.com/kb/1311/tailscale-funnel
+  # https://github.com/klutchell/balena-tailscale
   tailscale:
     build: tailscale
     restart: on-failure
-    environment:
-      TS_STATE_DIR: /var/lib/tailscale
-      TS_USERSPACE: false
-      TS_AUTH_ONCE: false
-      TS_HOSTNAME: adguard
-      TS_EXTRA_ARGS: --accept-dns=false --reset
     network_mode: host
     cap_add:
       - NET_ADMIN
-      - NET_RAW
       - SYS_MODULE
     labels:
       io.balena.features.kernel-modules: 1
     tmpfs:
       - /tmp
-      - /run
+      - /var/run/
     volumes:
       - tailscale:/var/lib/tailscale
