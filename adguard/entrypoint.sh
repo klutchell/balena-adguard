@@ -9,26 +9,30 @@ get_ipv4() {
 }
 
 # get the ipv4 for each provided interface, if any
-for interface in ${DNS_INTERFACES}; do
-    while true; do
-        ipv4_address="$(get_ipv4 "${interface}")"
+if [ -f "${CONFIG_FILE}" ] && [ -n "${DNS_INTERFACES}" ]; then
 
-        if [ -n "${ipv4_address}" ]; then
-            bind_hosts="${bind_hosts:+${bind_hosts},}${ipv4_address}"
-            break
-        fi
+    echo "Config file exists and DNS_INTERFACES is set, getting ipv4 addresses for interfaces..."
+    for interface in ${DNS_INTERFACES}; do
+        while true; do
+            ipv4_address="$(get_ipv4 "${interface}")"
 
-        # this loop will run forever if the interface never gets an ipv4 address
-        echo "Waiting for interface ${interface} to get an IPv4 address..."
-        sleep 5
+            if [ -n "${ipv4_address}" ]; then
+                bind_hosts="${bind_hosts:+${bind_hosts},}${ipv4_address}"
+                break
+            fi
+
+            # this loop will run forever if the interface never gets an ipv4 address
+            echo "Waiting for interface ${interface} to get an IPv4 address..."
+            sleep 5
+        done
     done
-done
 
-# if we found ipv4 addresses for the interfaces, update the config yaml
-if [ -n "${bind_hosts}" ]; then
-    echo "Setting bind hosts to ${bind_hosts}..."
-    bind_hosts="[${bind_hosts}]" yq e '.dns.bind_hosts = env(bind_hosts)' "${CONFIG_FILE}" >"${CONFIG_FILE}.tmp"
-    mv "${CONFIG_FILE}.tmp" "${CONFIG_FILE}"
+    # if we found ipv4 addresses for the interfaces, update the config yaml
+    if [ -n "${bind_hosts}" ]; then
+        echo "Setting bind hosts to ${bind_hosts}..."
+        bind_hosts="[${bind_hosts}]" yq e '.dns.bind_hosts = env(bind_hosts)' "${CONFIG_FILE}" >"${CONFIG_FILE}.tmp"
+        mv "${CONFIG_FILE}.tmp" "${CONFIG_FILE}"
+    fi
 fi
 
 # start adguard with the updated configuration
